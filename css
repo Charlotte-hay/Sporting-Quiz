@@ -1,0 +1,44 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #90ee90;
+}
+
+.quizContainer {
+  max-width: 500px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background: white;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {  
+  font-family: monospace;
+  color: #1E555C;
+}
+
+p {
+  font-family: monospace;
+  font-style: thin;
+  padding: 0;
+  margin: 0;
+}
+
+  div {
+      margin-bottom: 0.5rem;
+    }
+
+.counter {
+  max-width: 500px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background: white;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+}
+  
