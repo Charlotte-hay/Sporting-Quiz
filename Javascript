@@ -1,0 +1,117 @@
+const questions = [
+  {
+    question: 
+    "How many Grand Slams has Andy Murray won?",
+    choices: [
+      '6', '3', '7', '11'],
+    correctAnswer: 1,
+    correctFeedback:
+      "🎉Whoop Whoop, you got it right! Get ready for the next question!",
+    incorrectFeedback:
+      "Not quite, but try again!"
+  },
+  
+  {
+    question: 
+    "Where is the Worlds Darts Championship held each year?",
+    choices: [
+      'London', 'Liverpool', 'Manchester', 'Amsterdam'],
+    correctAnswer: 0,
+    correctFeedback:
+      "🎉Whoop Whoop, you got it right! Get ready for the next question!",
+    incorrectFeedback:
+      "Not quite, but try again!"
+  },
+  
+  {
+    question: 
+    "Who is the top scorer of England Women's national football team?",
+    choices: [
+      'Alex Greenwood', 'Kelly Smith', 'Chloe Kelly', 'Mary Earps'],
+    correctAnswer: 1,
+    correctFeedback:
+      "🎉Whoop Whoop, you got it right! Get ready for the next question!",
+    incorrectFeedback:
+      "Not quite, but try again!"
+  },
+  {
+   question: 
+    "Which WWE star did Tyson Fury wrestle in 2019?",
+    choices: [
+      'Hulk Hogan', 'The Rock', 'John Cena', 'Braun Strawman'],
+    correctAnswer: 3,
+    correctFeedback:
+      "🎉Whoop Whoop, you got it right! Get ready for the next question!",
+    incorrectFeedback:
+      "Not quite, but try again!"
+  },
+];
+
+let 
+currentQuestionIndex = 0;
+const quixcontainer = document.getElementById("sportsquiz");
+const letsgo = document.getElementById("letsgobtn");
+
+function generateCurrentQuestion() {
+  const currentQuestion = questions[currentQuestionIndex];
+  let choices = "";
+ currentQuestion.choices.forEach(function (choice, choiceIndex) {
+    choices += `
+      <label>
+        <input type="radio" name="question" value="${choiceIndex}">
+        ${choice}
+      </label>
+      <br>
+    `;
+  });
+
+  const output = `
+    <div>
+      <h3>${currentQuestion.question}</h3>
+      ${choices}
+    </div>
+  `;
+
+  quixcontainer.innerHTML = output;
+}
+
+// Check the answer and provide feedback
+function checkAnswer() {
+  const selectedAnswer = document.querySelector('input[name="question"]:checked');
+
+  if (selectedAnswer) {
+    const answerIndex = parseInt(selectedAnswer.value);
+    const currentQuestion = questions[currentQuestionIndex];
+
+    if (answerIndex === currentQuestion.correctAnswer) {
+      alert(currentQuestion.correctFeedback);
+      currentQuestionIndex++;
+
+      if (currentQuestionIndex < questions.length) {
+        generateCurrentQuestion();
+      } else {
+        alert("🥇Look at you go! You are a sporting wizz!🥇");
+        letsgobtn.disabled = true;
+      }
+    } else {
+      alert(currentQuestion.incorrectFeedback);
+    }
+  } else {
+    alert("Please select an answer.");
+  }
+}
+window.addEventListener("load", generateCurrentQuestion);
+
+letsgobtn.addEventListener("click", checkAnswer);
+
+var count = 30; //seconds in the timer
+var interval = setInterval(function(){
+  document.getElementById("count").innerHTML=count;
+  count--;
+  if (count === 0){
+    clearInterval(interval); //when the timer runs out either of those things will happen
+    document.getElementById('count').innerHTML='Done';
+   
+    alert("You're out of time!");
+  }
+}, 1000);
